@@ -5,9 +5,14 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="background_color">#3F51B5</color>
+    <color name="text_color">#FFFFFF</color>
 
     <!--Buttons colors-->
-    <color name="button_text_color">#FFFFFF</color>
     <color name="button_stroke_color">#F44336</color>
     <color name="button_background_color">#B93F51B5</color>
+
+    <!--Answer check result colors-->
+    <color name="answer_right_color">#00FF00</color>
+    <color name="answer_fail_color">#FF0000</color>
+
 </resources>

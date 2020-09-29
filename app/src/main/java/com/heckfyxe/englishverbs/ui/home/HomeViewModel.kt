@@ -1,19 +1,19 @@
 package com.heckfyxe.englishverbs.ui.home
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.heckfyxe.englishverbs.R
 import com.heckfyxe.englishverbs.models.Chapter
-import com.heckfyxe.englishverbs.utils.getString
 import me.ibrahimyilmaz.kiel.adapterOf
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel : ViewModel() {
 
     private val chapters = listOf(
-        Chapter(name = getString(R.string.chapter_1), assetName = "1"),
-        Chapter(name = getString(R.string.chapter_2), assetName = "2"),
-        Chapter(name = getString(R.string.chapter_3), assetName = "3"),
+        Chapter(name = R.string.chapter_1, assetName = "1"),
+        Chapter(name = R.string.chapter_2, assetName = "2"),
+        Chapter(name = R.string.chapter_3, assetName = "3"),
     )
 
     val adapter = liveData {
@@ -34,7 +34,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         emit(adapter)
     }
 
-    private fun onChapterClicked(chapter: Chapter) {
+    private val _navigateToQuizFragment = MutableLiveData<Chapter?>()
+    val navigateToQuizFragment: LiveData<Chapter?> = _navigateToQuizFragment
 
+    private fun onChapterClicked(chapter: Chapter) {
+        _navigateToQuizFragment.value = chapter
+    }
+
+    fun onNavigatedToQuizFragment() {
+        _navigateToQuizFragment.value = null
     }
 }

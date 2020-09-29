@@ -4,4 +4,10 @@
     <string name="chapter_1">Chapter 1</string>
     <string name="chapter_2">Chapter 2</string>
     <string name="chapter_3">Chapter 3</string>
+    <string name="second_form">2nd form</string>
+    <string name="third_form">3rd form</string>
+    <string name="check_answers">Check answers</string>
+    <string name="next">Next</string>
+    <string name="right">Right</string>
+    <string name="fail">Fail</string>
 </resources>

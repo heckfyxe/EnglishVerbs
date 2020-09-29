@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.quiz.QuizFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.heckfyxe.englishverbs.R" />
+
+        <import type="com.heckfyxe.englishverbs.ui.quiz.CheckResult" />
+
+        <variable
+            name="viewModel"
+            type="com.heckfyxe.englishverbs.ui.quiz.QuizViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/quizQuestion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@{viewModel.currentVerb.firstForm}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            tools:text="understand" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/secondFormInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/second_form"
+            android:maxWidth="100dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quizQuestion">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/secondFormEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.secondForm}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{viewModel.secondFormResult == CheckResult.RIGHT ? R.string.right : R.string.fail}"
+            android:textSize="16sp"
+            android:visibility="@{viewModel.secondFormResult != CheckResult.NONE ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/secondFormInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/secondFormInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/thirdFormInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/third_form"
+            android:maxWidth="100dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/view2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondFormInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/thirdFormEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/button_stroke_color"
+                android:text="@{viewModel.thirdForm}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{viewModel.secondFormResult == CheckResult.RIGHT ? R.string.right : R.string.fail}"
+            android:textSize="16sp"
+            android:visibility="@{viewModel.thirdFormResult != CheckResult.NONE ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/thirdFormInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/thirdFormInputLayout" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/checkAnswersButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.onButtonClicked()}"
+            android:text="@{viewModel.buttonText}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thirdFormInputLayout"
+            tools:text="@string/check_answers" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
